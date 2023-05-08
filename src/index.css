@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Red Hat Display", sans-serif;
+}
+:root {
+  /* --primary: #db4437; */
+  --light: #fefefe;
+  --black: #191d20;
+  --black2: #586570;
+  --primary: #1992e6;
+  --selected: #8696b3;
+  --secondary: #e7ecf1;
+  --background: #dce1ed;
+  --grey: #a6b2c9;
+  --dgrey: #7a8599;
+  --dark: #e7ecf1;
+  --text: #b5b5c0;
+  --green: #2c974b;
+  --danger: #db4437;
+  --warning: #ff9900;
+  --family: "Red Hat Display", sans-serif;
+}
+
+body {
+  height: 100vh;
+  width: 100%;
+  background-color: var(--background);
+}
+#root {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+}
+a {
+  text-decoration: none;
+}
+button:hover {
+  cursor: pointer;
+}
+.upcoming {
+  color: var(--warning);
+}
+.live {
+  color: var(--green);
+}
+.closed {
+  color: var(--danger);
+}
+.st {
+  background-color: #fde55d;
+  border: 5px solid #ddc852;
+}
+.nd {
+  background-color: #e7e7e7;
+  border: 5px solid #c0c0c0;
+}
+.rd {
+  background-color: #ffe7ce;
+  border: 5px solid #ddc4a9;
+}
+.activeLink {
+  position: relative;
+  color: var(--primary) !important;
+  font-weight: 600;
+}
+.activeLink::after {
+  content: "";
+  position: absolute;
+  bottom: 6px;
+  left: calc(50% - 2.3rem);
+  height: 1rem;
+  border-bottom: 4px solid var(--primary);
+  border-radius: 100%;
+  width: 5rem;
+}

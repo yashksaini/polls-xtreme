@@ -1,0 +1,415 @@
+.container {
+  width: min(70rem, 100%);
+  margin: auto;
+  border-radius: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+.fullContainer {
+  margin-bottom: 3rem;
+}
+.header {
+  width: min(70rem, 100%);
+  margin: 1.5rem auto 1.5rem auto;
+  background-color: var(--secondary);
+  padding: 2rem;
+  border-radius: 1rem;
+}
+.header h1 {
+  font-size: 2rem;
+  color: var(--black2);
+  font-weight: 600;
+  line-height: 1.5;
+}
+.header p {
+  font-size: 1.2rem;
+  line-height: 2;
+  color: var(--black2);
+  font-weight: 400;
+}
+.pollContainer {
+  width: 65%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-direction: column;
+}
+.polls {
+  width: 100%;
+  background-color: var(--secondary);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+}
+.pollStatus {
+  width: 35%;
+  background-color: var(--secondary);
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+.card {
+  padding: 1rem;
+  border-bottom: 1px solid var(--grey);
+  margin-bottom: 1rem;
+  position: relative;
+}
+.card:last-child {
+  border: none;
+  margin-bottom: 0;
+}
+.card h2 {
+  color: var(--black2);
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+.card h2 strong {
+  color: var(--primary);
+  margin-left: 1rem;
+  font-size: 1.7rem;
+}
+.card h3 {
+  color: var(--black2);
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+.footer p {
+  color: var(--black2);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.footer a {
+  color: var(--primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer a span {
+  font-size: 1rem;
+  font-weight: 600;
+  height: 2rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer a span:nth-child(2) {
+  width: 2rem;
+  height: 2rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+.select {
+  height: 4rem;
+  width: 100%;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: flex-start;
+  padding: 1rem;
+  align-items: center;
+  background-color: var(--background);
+  border-radius: 1rem;
+  font-size: 1.2rem;
+  color: var(--black2);
+}
+.select span {
+  margin-right: 1rem;
+}
+.select:last-child {
+  margin-bottom: 0;
+}
+.select:hover {
+  cursor: pointer;
+}
+.activeSelect {
+  background-color: var(--primary) !important;
+  color: var(--light) !important;
+}
+.emptyStatus {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.emptyStatus div span {
+  width: 10rem;
+  height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 6rem;
+  color: var(--black2);
+}
+.emptyStatus div {
+  font-size: 1.5rem;
+  color: var(--dgrey);
+}
+.emptyStatus button {
+  width: 8rem;
+  height: 2.5rem;
+  margin-top: 2rem;
+  border-radius: 10rem;
+  border: none;
+  background-color: var(--primary);
+  color: var(--light);
+  font-size: 1rem;
+}
+.status {
+  text-transform: uppercase;
+  margin-left: 1rem;
+  font-weight: 900;
+}
+.paging {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background-color: var(--secondary);
+  padding: 0.5rem;
+  border-radius: 10rem;
+  /* margin-bottom: 1rem; */
+}
+.arrow {
+  width: 3rem;
+  aspect-ratio: 1;
+  background-color: var(--background);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  color: var(--black);
+  user-select: none;
+}
+.arrow:hover {
+  cursor: pointer;
+}
+.allPages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--black2);
+  font-weight: 500;
+  font-size: 1rem;
+  user-select: none;
+}
+.pageData {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--background);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+}
+.activePage {
+  background-color: var(--primary);
+  color: var(--background);
+}
+.pageData:hover {
+  cursor: pointer;
+}
+.hide {
+  display: none;
+}
+.submitStatus {
+  background-color: var(--primary);
+  color: var(--light);
+  padding: 0.25rem 0.6rem;
+  border-radius: 5rem;
+  margin-top: 0.5rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7rem;
+}
+.pendingStatus {
+  background-color: var(--danger);
+  color: var(--light);
+  padding: 0.25rem 0.6rem;
+  border-radius: 5rem;
+  margin-top: 0.5rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7rem;
+}
+.correctStatus {
+  background-color: var(--green);
+  color: var(--light);
+  padding: 0.25rem 0.6rem;
+  border-radius: 5rem;
+  margin-top: 0.5rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7rem;
+  float: right;
+}
+.wrongStatus {
+  background-color: var(--warning);
+  color: var(--light);
+  padding: 0.25rem 0.6rem;
+  border-radius: 5rem;
+  margin-top: 0.5rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7rem;
+  float: right;
+}
+.answerStatus {
+  background-color: var(--selected);
+  color: var(--light);
+  padding: 0.25rem 0.6rem;
+  border-radius: 5rem;
+  margin-top: 0.5rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7rem;
+  float: right;
+}
+.box {
+  width: 10rem;
+  aspect-ratio: 1;
+  border-radius: 100em;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--dgrey);
+  margin: 3.25rem auto;
+}
+.box::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  aspect-ratio: 1;
+  top: -2px;
+  left: -2px;
+  border-radius: 100em;
+  border-top: 4px solid var(--primary);
+  border-bottom: 2px solid var(--primary);
+  border-left: 2px solid var(--secondary);
+  animation: rotateBox 2s 0s infinite;
+}
+@keyframes rotateBox {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@media only screen and (max-width: 768px) {
+  .header {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    margin: 0.25rem auto 0rem auto;
+    border-radius: 0rem;
+  }
+  .header h1 {
+    font-size: 1.5rem;
+  }
+  .header p {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    line-height: 1.3;
+  }
+  .container {
+    width: 100%;
+    border-radius: 0rem;
+    flex-direction: column-reverse;
+    gap: 0.25rem;
+  }
+  .pollContainer {
+    width: 100%;
+    gap: 0.125rem;
+  }
+  .polls {
+    border-radius: 0rem;
+    padding: 1rem;
+  }
+  .pollStatus {
+    width: 100%;
+    border-radius: 0rem;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 0.5rem;
+    column-gap: 0.5rem;
+  }
+  .select {
+    height: 3rem;
+    width: 100%;
+    margin-bottom: 0;
+    border-radius: 0.5rem;
+    font-size: 0.8rem;
+  }
+  .select span {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+  }
+  .select:last-child {
+    margin-bottom: 0;
+  }
+  .arrow {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.7rem;
+  }
+  .pageData {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.7rem;
+  }
+  .activePage {
+    display: flex;
+  }
+  .paging {
+    border-radius: 0;
+  }
+  .card h3 {
+    font-size: 1rem;
+  }
+  .footer {
+    margin-top: 0.25rem;
+  }
+  .footer p {
+    font-size: 0.75rem;
+  }
+  .footer a span {
+    font-size: 0.8rem;
+    height: 1.5rem;
+  }
+  .footer a span:nth-child(2) {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .card {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .submitStatus,
+  .correctStatus,
+  .wrongStatus,
+  .answerStatus,
+  .pendingStatus {
+    padding: 0.125rem 0.5rem;
+    font-size: 0.6rem;
+  }
+  .fullContainer {
+    margin-bottom: 0.5rem;
+  }
+}

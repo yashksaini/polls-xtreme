@@ -1,0 +1,51 @@
+.rankLogo {
+  width: 3.5rem;
+  height: 3.5rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--black);
+  border-radius: 4rem;
+  margin-right: 1rem;
+  font-weight: 400;
+}
+.rankLogo span sup {
+  margin-left: -3px;
+}
+.points {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--black2);
+  float: right;
+}
+.select {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 3rem;
+  padding: 0 1rem;
+}
+.select select {
+  width: 5rem;
+  height: 2.5rem;
+  font-size: 1.2rem;
+  padding: 0 0.25rem;
+  border: none;
+  background-color: var(--light);
+  border-radius: 0.5rem;
+}
+.select select:hover {
+  cursor: pointer;
+}
+.select select:focus {
+  outline: none;
+}
+.select p {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--black2);
+}
+.select p span {
+  font-size: 1.5rem;
+  font-weight: 900;
+}

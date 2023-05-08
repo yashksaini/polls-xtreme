@@ -1,0 +1,135 @@
+.optionSpace {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.optionSpace h2 {
+  font-size: 1.8rem;
+  text-align: left;
+  width: 100%;
+  line-height: 1.5;
+  margin-bottom: 1.2rem;
+  color: var(--black2);
+  font-weight: 500;
+}
+.optionSpace button {
+  width: 100%;
+  height: 4rem;
+  border: none;
+  border-radius: 1rem;
+  margin: 0.5rem 0;
+  background-color: var(--primary);
+  color: var(--light);
+  font: 400 1.2rem var(--family);
+}
+.optionSpace button:disabled {
+  background-color: var(--grey);
+}
+.optionSpace button:disabled:hover {
+  cursor: unset;
+}
+.select {
+  height: 4rem;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  padding: 1rem;
+  align-items: center;
+  background-color: var(--background);
+  border-radius: 1rem;
+  font-size: 1.2rem;
+  color: var(--black2);
+}
+.select span {
+  margin-right: 1rem;
+}
+.select:last-child {
+  margin-bottom: 0;
+}
+.select:hover {
+  cursor: pointer;
+}
+.activeSelect {
+  background-color: var(--selected) !important;
+  color: var(--light) !important;
+}
+.viewAllBtn {
+  width: 10rem;
+  height: 3rem;
+  background-color: var(--primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10rem;
+  margin-top: 2rem;
+  color: var(--light);
+}
+.pollStatus {
+  width: 35%;
+  background-color: var(--secondary);
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+.correctStatus {
+  background-color: var(--secondary);
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  padding: 0.25rem 0.6rem;
+  border-radius: 5rem;
+  margin-top: 0.5rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7rem;
+  /* float: right; */
+}
+.answerStatus {
+  background-color: var(--selected);
+  color: var(--light);
+  padding: 0.25rem 0.6rem;
+  border-radius: 5rem;
+  margin-top: 0.5rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7rem;
+}
+.cardHead {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+}
+
+.correctAnswer {
+  color: var(--green);
+}
+.wrongAnswer {
+  color: var(--danger);
+}
+@media only screen and (max-width: 768px) {
+  .optionSpace h2 {
+    font-size: 1.4rem;
+  }
+  .select {
+    height: 3rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+  }
+  .optionSpace button {
+    height: 3rem;
+    border-radius: 0.5rem;
+    font: 400 1rem var(--family);
+  }
+  .pollStatus {
+    width: 100%;
+    border-radius: 0rem;
+    padding: 1rem;
+  }
+  .correctStatus {
+    padding: 0.125rem 0.5rem;
+    font-size: 0.6rem;
+  }
+}

@@ -1,0 +1,112 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 4rem;
+  padding: 0 1rem;
+  background-color: none;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+}
+.navbar::after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: rgba(231, 236, 241, 0.2);
+  backdrop-filter: blur(10px) saturate(160%) contrast(45%) brightness(140%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1000;
+}
+.logo {
+  color: var(--primary);
+  font: 400 1.5rem var(--family);
+}
+.logo span:nth-child(1) {
+  color: var(--grey);
+}
+.logo span:nth-child(2) {
+  font: italic 500 2rem var(--family);
+}
+.navs,
+.activeNav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  position: relative;
+  z-index: 2;
+}
+
+.navs a,
+.activeNav a {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4rem;
+  color: var(--dgrey);
+}
+.navs a span,
+.activeNav a span {
+  margin-right: 0.3rem;
+}
+.menu {
+  display: none;
+  width: 3rem;
+  height: 4rem;
+  justify-content: center;
+  align-items: center;
+  color: var(--black);
+}
+.menu:hover {
+  cursor: pointer;
+}
+.logout {
+  background: none;
+  border: none;
+  color: var(--black);
+}
+@media only screen and (max-width: 768px) {
+  .navs,
+  .activeNav {
+    gap: 0;
+  }
+  .menu {
+    display: flex;
+  }
+  .navs {
+    display: none;
+  }
+  .activeNav {
+    flex-direction: column;
+    height: calc(100vh - 4rem);
+    width: 100%;
+    justify-content: flex-start;
+    position: absolute;
+    top: 4rem;
+    right: 0;
+    border-top: 1px solid var(--background);
+  }
+  .navs::after,
+  .activeNav::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(40px) saturate(160%) contrast(45%) brightness(140%);
+    background-color: rgba(231, 236, 241, 0.2);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+  .activeNav a {
+    width: 218px;
+    margin-left: 0;
+    margin: 1rem 0;
+  }
+}

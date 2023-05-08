@@ -1,0 +1,166 @@
+/* Headings and Sub-Headings */
+.heading {
+  text-align: center;
+  color: var(--primary);
+  font: 400 3.5rem var(--family);
+}
+.heading span:nth-child(1) {
+  color: var(--dgrey);
+}
+.heading span:nth-child(2) {
+  font: italic 500 4.5rem var(--family);
+}
+.subHeading {
+  color: var(--grey);
+  text-align: center;
+  font: 400 1.5rem var(--family);
+}
+
+/* Form  */
+.form {
+  width: min(30rem, 100%);
+  margin: 2rem auto;
+  padding: 3rem;
+  background-color: var(--secondary);
+  border-radius: 1.5rem;
+}
+.form h2 {
+  text-align: center;
+  font: 600 2.5rem var(--family);
+  color: var(--black);
+}
+.form h3 {
+  text-align: center;
+  font: 400 1.25rem var(--family);
+  color: var(--dgrey);
+  margin-bottom: 2rem;
+}
+
+.form input,
+.form select {
+  color: var(--black);
+  background-color: var(--background);
+  width: 100%;
+  height: 4rem;
+  border: none;
+  border-radius: 1rem;
+  padding: 0 1.5rem;
+  font: 600 1.25rem var(--family);
+  margin-bottom: 1rem;
+}
+.form input::placeholder {
+  color: var(--grey);
+}
+.form input:focus,
+.form select:focus {
+  outline: none;
+}
+.textArea {
+  width: 100%;
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+  min-height: 10rem;
+  border: none;
+  background-color: var(--background);
+  resize: vertical;
+  font: 600 1.25rem var(--family);
+  color: var(--black);
+}
+.textArea::-webkit-scrollbar {
+  width: 10px;
+}
+.textArea::-webkit-scrollbar-track {
+  background: var(--grey);
+  border-radius: 10px;
+}
+.textArea::-webkit-scrollbar-thumb {
+  background: var(--dgrey);
+  border-radius: 10px;
+}
+.textArea::-webkit-scrollbar-thumb:hover {
+  background: var(--dgrey);
+}
+.textArea::placeholder {
+  color: var(--grey);
+}
+.textArea:focus {
+  outline: none;
+}
+.form label {
+  color: var(--dgrey);
+  display: flex;
+  margin: 0.5rem 0 0.25rem 0;
+}
+.form button {
+  width: 100%;
+  height: 4rem;
+  border: none;
+  border-radius: 1rem;
+  margin: 0.5rem 0;
+  background-color: var(--primary);
+  color: var(--light);
+  font: 600 1.2rem var(--family);
+}
+.form button:disabled {
+  background-color: var(--grey);
+}
+.form button:disabled:hover {
+  cursor: unset;
+}
+.form a {
+  display: block;
+  text-align: center;
+  color: var(--dgrey);
+  font: 400 1rem var(--family);
+}
+/* Form Messages */
+.successMsg {
+  text-align: center;
+  margin: 0.5rem 0 1rem 0;
+  color: var(--green);
+}
+.errorMsg {
+  text-align: center;
+  margin: 0.5rem 0 1rem 0;
+  color: var(--danger);
+}
+
+/* Responsive for Mobile */
+@media only screen and (max-width: 536px) {
+  /* Headings and Sub-Headings */
+  .heading {
+    font: 400 2.5rem var(--family);
+    margin-top: 1rem 0;
+  }
+  .heading span:nth-child(2) {
+    font: italic 500 3rem var(--family);
+  }
+  .subHeading {
+    font: 400 1rem var(--family);
+  }
+  /* Form  */
+  .form {
+    padding: 1.5rem;
+    border-radius: 0;
+  }
+  .form h2 {
+    font: 600 2rem var(--family);
+  }
+  .form h3 {
+    font: 400 1rem var(--family);
+  }
+  .form input,
+  .form select {
+    height: 3.5rem;
+    padding: 0 1.5rem;
+    font: 600 1rem var(--family);
+    margin-bottom: 1.5rem;
+  }
+  .form button {
+    margin: 1rem 0 0 0;
+    font: 600 1rem var(--family);
+  }
+  .form a {
+    font: 400 0.9rem var(--family);
+  }
+}
