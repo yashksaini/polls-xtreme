@@ -71,12 +71,10 @@ In summary, PollsXtreme isn't merely an application; it's a gateway to cricket e
 - Enhanced visual user interface
 - Social sharing of predictions
 - Daily/weekly prediction challenges
-- Reward system for top-ranked users
 - Secure user authentication mechanism
 - Firebase's real-time database integration
 - Mobile-responsive Progressive Web App (PWA)
 - User-friendly and intuitive design
-- Comprehensive user support system
 
 ## Used For
 
