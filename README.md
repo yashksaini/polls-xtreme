@@ -32,8 +32,6 @@ PollsXtreme is a groundbreaking application at the intersection of sports enthus
         
 The core essence of PollsXtreme revolves around the captivating world of cricket matches. This application transforms passive viewership into an interactive journey of foresight and excitement. Admins wield the power to craft polls that capture the essence of ongoing and upcoming matches, igniting user discussions and camaraderie.
         
-At its heart, PollsXtreme encapsulates three pivotal pillars: Prediction, Community, and User Experience. Each facet intertwines to deliver an immersive and rewarding experience to every user. From a spectrum of cricket-related questions to predicting winners, run totals, and wickets, the application stimulates cricket lovers' analytical minds while they enjoy the thrill of matches.
-        
 The live, upcoming, and closed poll phases form the backbone of user interaction. Live Polls offer a snapshot of the ongoing match, with users making split-second decisions to predict game-changing moments. Upcoming Polls channel anticipation, urging users to deliberate and submit predictions before the window closes. Closed Polls unveil the wisdom of the community, showcasing accurate predictions and honoring top performers.
         
 User rankings are the heartbeat of PollsXtreme, galvanizing friendly competition and dedication. The points system fosters a sense of achievement with every accurate prediction, allowing users to gauge their expertise against peers. The allure of a top-ranking position fuels engagement, as users vie for recognition and credibility within the community.
