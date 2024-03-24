@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import pollStyle from "./polls.module.css";
 import OverallRank from "./partials/OverallRank";
 import PollRank from "./partials/PollRank";
+import SeasonRank from "./partials/SeasonRank";
 
 const Ranking = () => {
-  const [rankType, setRankType] = useState("overall");
+  const [rankType, setRankType] = useState("season");
   return (
     <div className={pollStyle.fullContainer}>
       <div className={pollStyle.header}>
@@ -19,9 +20,25 @@ const Ranking = () => {
           <div className={pollStyle.polls}>
             {rankType === "overall" ? <OverallRank /> : ""}
             {rankType === "polls" ? <PollRank /> : ""}
+            {rankType === "season" ? <SeasonRank /> : ""}
           </div>
         </div>
         <div className={pollStyle.pollStatus}>
+          <div
+            className={
+              rankType === "season"
+                ? `${pollStyle.select} ${pollStyle.activeSelect}`
+                : `${pollStyle.select}`
+            }
+            onClick={() => {
+              setRankType("season");
+            }}
+          >
+            <span className="material-symbols-outlined">
+              {rankType === "season" ? "task_alt" : "circle"}
+            </span>
+            IPL 2024 Rank
+          </div>
           <div
             className={
               rankType === "overall"

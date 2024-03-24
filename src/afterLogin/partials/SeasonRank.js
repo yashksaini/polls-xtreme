@@ -6,18 +6,17 @@ import {
   collection,
   where,
   orderBy,
-  limit,
 } from "firebase/firestore";
 import pollStyle from "./../polls.module.css";
 import rankStyle from "./rank.module.css";
 import intToString from "../../converter";
 import { Link } from "react-router-dom";
 
-const PollRank = () => {
+const SeasonRank = () => {
   const [rankData, setRankData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [pollCount, setPollCount] = useState(20);
-  let firestore = getFirestore();
+  const [totalPolls, setTotalPolls] = useState(0);
+  const firestore = getFirestore();
   const rankStatus = ["st", "nd", "rd"];
 
   async function getProfileData(pointsData) {
@@ -46,13 +45,18 @@ const PollRank = () => {
     setRankData(rankingData);
     setLoading(false);
   }
+
   async function getPollWiseRanking() {
     setLoading(true);
+    const startDate = new Date("2024-03-21");
+    const endDate = new Date(); // Current date
     let queryPolls = await getDocs(
       query(
         collection(firestore, "polls"),
-        orderBy("createdOn", "desc"),
-        limit(pollCount)
+        where("createdOn", ">=", startDate),
+        where("createdOn", "<=", endDate),
+        where("status", "==", "closed"),
+        orderBy("createdOn", "desc")
       )
     );
     let arr = [];
@@ -71,29 +75,16 @@ const PollRank = () => {
       });
       getProfileData(arr);
     });
+    setTotalPolls(queryPolls.size);
   }
+
   useEffect(() => {
-    getPollWiseRanking(); // eslint-disable-next-line
-  }, [pollCount]);
+    getPollWiseRanking();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
-      <div className={rankStyle.select}>
-        <p>
-          Last <span>{pollCount}</span> polls rank
-        </p>
-        <select
-          onChange={(e) => {
-            setPollCount(e.target.value);
-          }}
-          value={pollCount}
-        >
-          <option value={5}>5</option>
-          <option value={10}>10</option>
-          <option value={20}>20</option>
-          <option value={50}>50</option>
-          <option value={100}>100</option>
-        </select>
-      </div>
       {loading ? (
         <div className={pollStyle.load}>
           <div className={pollStyle.box}>Loading...</div>
@@ -101,6 +92,9 @@ const PollRank = () => {
       ) : (
         ""
       )}
+      <div className={loading ? pollStyle.hide : pollStyle.select}>
+        <p>Rank based on {totalPolls} polls in IPL 2024</p>
+      </div>
       <div className={loading ? pollStyle.hide : ""}>
         {rankData?.splice(0, 5)?.map((user, index) => {
           return (
@@ -123,7 +117,6 @@ const PollRank = () => {
                 </p>
                 {user?.name}
               </h3>
-
               <div className={pollStyle.footer}>
                 <Link to={"/profile/" + user?.id}>
                   <span>View Profile </span>
@@ -138,4 +131,4 @@ const PollRank = () => {
   );
 };
 
-export default PollRank;
+export default SeasonRank;

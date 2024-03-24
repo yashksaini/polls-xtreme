@@ -62,6 +62,10 @@ button:hover {
   background-color: #ffe7ce;
   border: 5px solid #ddc4a9;
 }
+.th {
+  background-color: var(--background);
+  border: 5px solid var(--selected);
+}
 .activeLink {
   position: relative;
   color: var(--primary) !important;

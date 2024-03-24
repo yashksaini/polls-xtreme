@@ -24,7 +24,7 @@ const OverallRank = () => {
         collection(firestore, "profile"),
         where("points", "!=", 0),
         orderBy("points", "desc"),
-        limit(3)
+        limit(5)
       )
     );
     let userData = [];
@@ -53,9 +53,16 @@ const OverallRank = () => {
               {intToString(user?.points)}
             </span>
             <h3>
-              <p className={rankStyle.rankLogo + " " + rankStatus[index]}>
+              <p
+                className={
+                  rankStyle.rankLogo +
+                  " " +
+                  (rankStatus[index] ? rankStatus[index] : "th")
+                }
+              >
                 <span>
-                  {index + 1} <sup>{rankStatus[index]}</sup>
+                  {index + 1}{" "}
+                  <sup>{rankStatus[index] ? rankStatus[index] : "th"}</sup>
                 </span>
               </p>
               {user?.name}
