@@ -73,6 +73,7 @@ In summary, PollsXtreme isn't merely an application; it's a gateway to cricket e
 - Firebase's real-time database integration
 - Mobile-responsive Progressive Web App (PWA)
 - User-friendly and intuitive design
+- Now season ranking added for the IPL 2024
 
 ## Used For
 
