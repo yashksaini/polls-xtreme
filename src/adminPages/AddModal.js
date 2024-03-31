@@ -9,12 +9,22 @@ import {
 
 import style from "./admin.module.css";
 
+// Get current date and time
+const currentDate = new Date();
+const currentYear = currentDate.getFullYear();
+const currentMonth = (currentDate.getMonth() + 1).toString().padStart(2, "0");
+const currentDay = currentDate.getDate().toString().padStart(2, "0");
+const defaultStartTime = `${currentYear}-${currentMonth}-${currentDay}T19:00`;
+const defaultEndTime = `${currentYear}-${currentMonth}-${currentDay}T20:00`;
+
 const AddModal = ({ addModal, setAddModal }) => {
   const [valid, setValid] = useState(false);
   const [optionCount, setOptionCount] = useState(2);
   const [options, setOptions] = useState(["", ""]);
   const [status, setStatus] = useState("live");
   const [title, setTitle] = useState("");
+  const [startTime, setStartTime] = useState(defaultStartTime);
+  const [endTime, setEndTime] = useState(defaultEndTime);
   let firestore = getFirestore();
   const addPoll = async () => {
     const docRef = await addDoc(collection(firestore, "polls"), {
@@ -23,6 +33,8 @@ const AddModal = ({ addModal, setAddModal }) => {
       createdOn: serverTimestamp(),
       options: options,
       status: status,
+      startTime: startTime,
+      endTime: endTime,
     });
     await updateDoc(docRef, {
       id: docRef.id,
@@ -81,12 +93,34 @@ const AddModal = ({ addModal, setAddModal }) => {
             onChange={(e) => {
               setTitle(e.target.value);
             }}
+            value={title}
+          />
+          <label>Start Time *</label>
+          <input
+            type="datetime-local"
+            placeholder=""
+            onChange={(e) => {
+              setStartTime(e.target.value);
+              console.log(e.target.value);
+            }}
+            value={startTime}
+          />
+          <label>End Time *</label>
+          <input
+            type="datetime-local"
+            placeholder=""
+            onChange={(e) => {
+              setEndTime(e.target.value);
+              console.log(e.target.value);
+            }}
+            value={endTime}
           />
           <label>Option Count *</label>
           <select
             onChange={(e) => {
               setOptionCount(e.target.value);
             }}
+            value={optionCount}
           >
             <option value="2">2</option>
             <option value="3">3</option>

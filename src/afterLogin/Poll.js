@@ -14,6 +14,7 @@ import { Link, useParams } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import style from "./poll.module.css";
 import pollStyle from "./polls.module.css";
+import TimeLeftCounter from "./partials/TimeLeftCounter";
 
 const Poll = () => {
   const { id } = useParams();
@@ -25,6 +26,7 @@ const Poll = () => {
   const [points, setPoints] = useState(0);
   const [submittedUsers, setSubmittedUsers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isActive, setActive] = useState(false);
 
   let auth = getAuth();
   let firestore = getFirestore();
@@ -94,20 +96,29 @@ const Poll = () => {
   }
 
   async function addPoll() {
-    setValid(false);
-    const docRef = await addDoc(collection(firestore, "pollsData"), {
-      userId: userID,
-      pollId: id,
-      answer: selected,
-      points: 0,
-      answerOn: serverTimestamp(),
-    });
-    await updateDoc(docRef, {
-      id: docRef.id,
-    }).then(async () => {
-      await getSubmittedData(userID);
-      window.location.reload();
-    });
+    if (pollData?.startTime && pollData?.endTime) {
+      let startTime = new Date(pollData?.startTime);
+      let endTime = new Date(pollData?.endTime);
+      let currentTime = new Date();
+      if (currentTime > startTime && currentTime < endTime) {
+        setValid(false);
+        const docRef = await addDoc(collection(firestore, "pollsData"), {
+          userId: userID,
+          pollId: id,
+          answer: selected,
+          points: 0,
+          answerOn: serverTimestamp(),
+        });
+        await updateDoc(docRef, {
+          id: docRef.id,
+        }).then(async () => {
+          await getSubmittedData(userID);
+          window.location.reload();
+        });
+      } else {
+        alert("Times up . Poll is in progress.");
+      }
+    }
   }
 
   useEffect(() => {
@@ -123,6 +134,23 @@ const Poll = () => {
       setValid(false);
     }
   }, [selected]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (pollData?.startTime && pollData?.endTime) {
+        let startTime = new Date(pollData?.startTime);
+        let endTime = new Date(pollData?.endTime);
+        let currentTime = new Date();
+        if (currentTime > startTime && currentTime < endTime) {
+          setActive(true);
+        } else {
+          setActive(false);
+        }
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [pollData?.endTime, pollData?.startTime]);
   return (
     <div className={pollStyle.fullContainer}>
       <div className={pollStyle.header}>
@@ -135,9 +163,19 @@ const Poll = () => {
           }
         >
           {pollData?.createdOn?.toDate().toDateString()}{" "}
-          <strong className={`${pollStyle.status} ${pollData?.status}`}>
-            {pollData?.status}
-          </strong>
+          {pollData?.startTime &&
+            pollData?.endTime &&
+            pollData.status !== "closed" && (
+              <TimeLeftCounter
+                startTime={pollData.startTime}
+                endTime={pollData.endTime}
+              />
+            )}
+          {pollData?.status === "closed" && (
+            <strong className={`${pollStyle.status} ${pollData.status}`}>
+              {pollData?.status}
+            </strong>
+          )}
         </p>
         <p
           className={
@@ -190,8 +228,8 @@ const Poll = () => {
                       onClick={() => {
                         if (
                           !isSubmitted &&
-                          pollData?.status !== "live" &&
-                          pollData?.status !== "closed"
+                          pollData?.status !== "closed" &&
+                          isActive
                         ) {
                           setSelected(option);
                         }
@@ -214,8 +252,8 @@ const Poll = () => {
                   onClick={addPoll}
                   className={
                     isSubmitted === true ||
-                    pollData?.status === "live" ||
-                    pollData?.status === "closed"
+                    pollData?.status === "closed" ||
+                    !isActive
                       ? `${pollStyle.hide}`
                       : ""
                   }

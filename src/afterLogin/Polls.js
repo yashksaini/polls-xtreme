@@ -13,13 +13,15 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Paging from "./partials/Paging";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import TimeLeftCounter from "./partials/TimeLeftCounter";
 const Polls = () => {
   const [pageCount, setPageCount] = useState(1);
   const [currentPage, setCurrentPage] = useState(1);
   const [polls, setPolls] = useState([]);
-  const [pollType, setPollType] = useState("");
+  const [pollType, setPollType] = useState("all");
   const [loading, setLoading] = useState(true);
   let auth = getAuth();
+  const currentTime = new Date();
 
   async function getPollsData(userID) {
     let array = [];
@@ -64,21 +66,21 @@ const Polls = () => {
     setTimeout(() => {
       setPolls(array);
       if (array.length % 5 === 0) {
-        setPageCount(array.filter(checkStatus).length / 5);
+        setPageCount(array.filter(checkPollStatus).length / 5);
       } else {
-        setPageCount(parseInt(array.filter(checkStatus).length / 5) + 1);
+        setPageCount(parseInt(array.filter(checkPollStatus).length / 5) + 1);
       }
       setLoading(false);
     }, 800);
   }
 
-  const checkStatus = (poll) => {
-    if (pollType !== "") {
-      return poll.status === pollType;
-    } else {
-      return true;
-    }
-  };
+  // const checkStatus = (poll) => {
+  //   if (pollType !== "") {
+  //     return poll.status === pollType;
+  //   } else {
+  //     return true;
+  //   }
+  // };
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
       await getPollsData(user.uid);
@@ -86,15 +88,36 @@ const Polls = () => {
   }, []);
 
   useEffect(() => {
-    if (polls.filter(checkStatus).length % 5 === 0) {
-      setPageCount(polls.filter(checkStatus).length / 5);
+    if (polls.filter(checkPollStatus).length % 5 === 0) {
+      setPageCount(polls.filter(checkPollStatus).length / 5);
     } else {
-      setPageCount(parseInt(polls.filter(checkStatus).length / 5) + 1);
+      setPageCount(parseInt(polls.filter(checkPollStatus).length / 5) + 1);
     } // eslint-disable-next-line
   }, [pollType]);
 
   const updateCurrentPage = (pageNo) => {
     setCurrentPage(pageNo);
+  };
+  const checkPollStatus = (poll) => {
+    const startTime = poll?.startTime ? new Date(poll?.startTime) : null;
+    const endTime = poll?.endTime ? new Date(poll?.endTime) : null;
+    if (pollType === "all") {
+      return true;
+    }
+    if (pollType === "live" && startTime && endTime) {
+      return (
+        currentTime >= startTime &&
+        currentTime <= endTime &&
+        poll.status !== "closed"
+      );
+    }
+    if (pollType === "upcoming" && startTime) {
+      return poll.status !== "closed" && currentTime < startTime;
+    }
+    if (poll.status === "closed" && pollType === "closed") {
+      return true;
+    }
+    return pollType === poll.status;
   };
   return (
     <div className={pollStyle.fullContainer}>
@@ -120,7 +143,7 @@ const Polls = () => {
             ) : (
               ""
             )}
-            {polls.filter(checkStatus).length === 0 && !loading ? (
+            {polls.filter(checkPollStatus).length === 0 && !loading ? (
               <div className={pollStyle.emptyStatus}>
                 <div>
                   <span className="material-symbols-outlined">
@@ -144,7 +167,7 @@ const Polls = () => {
             )}
 
             {polls
-              .filter(checkStatus)
+              .filter(checkPollStatus)
               ?.slice((currentPage - 1) * 5, (currentPage - 1) * 5 + 5)
               .map((poll, index) => {
                 return (
@@ -201,11 +224,21 @@ const Polls = () => {
                     <div className={pollStyle.footer}>
                       <p>
                         <i>{poll?.createdOn?.toDate().toDateString()}</i>
-                        <strong
-                          className={`${pollStyle.status} ${poll.status}`}
-                        >
-                          {poll?.status}
-                        </strong>
+                        {poll?.startTime &&
+                          poll?.endTime &&
+                          poll.status !== "closed" && (
+                            <TimeLeftCounter
+                              startTime={poll.startTime}
+                              endTime={poll.endTime}
+                            />
+                          )}
+                        {poll?.status === "closed" && (
+                          <strong
+                            className={`${pollStyle.status} ${poll.status}`}
+                          >
+                            {poll?.status}
+                          </strong>
+                        )}
                       </p>
                       <Link to={"/poll/" + poll?.id}>
                         <span>View Poll </span>
@@ -227,17 +260,17 @@ const Polls = () => {
         <div className={pollStyle.pollStatus}>
           <div
             className={
-              pollType === ""
+              pollType === "all"
                 ? `${pollStyle.select} ${pollStyle.activeSelect}`
                 : `${pollStyle.select}`
             }
             onClick={() => {
-              setPollType("");
+              setPollType("all");
               setCurrentPage(1);
             }}
           >
             <span className="material-symbols-outlined">
-              {pollType === "" ? "task_alt" : "circle"}
+              {pollType === "all" ? "task_alt" : "circle"}
             </span>
             All Polls
           </div>
