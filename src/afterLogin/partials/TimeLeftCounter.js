@@ -28,9 +28,8 @@ const TimeLeftCounter = ({ startTime, endTime }) => {
       color = "#2c974b";
     }
     if (timeDiff <= 0) {
-      text = "In Progress";
+      text = "In Progress...";
       color = "#1992e6";
-      return;
     }
 
     const hours = Math.floor(timeDiff / (1000 * 60 * 60));
@@ -40,11 +39,13 @@ const TimeLeftCounter = ({ startTime, endTime }) => {
     return (
       <span className={style.status1}>
         <span style={{ color: color }}>{text}</span>
-        <b className={style.label}>
-          {hours}:{minutes < 10 ? "0" : ""}
-          {minutes}:{seconds < 10 ? "0" : ""}
-          {seconds}
-        </b>
+        {timeDiff > 0 && (
+          <b className={style.label}>
+            {hours}:{minutes < 10 ? "0" : ""}
+            {minutes}:{seconds < 10 ? "0" : ""}
+            {seconds}
+          </b>
+        )}
       </span>
     );
   }
