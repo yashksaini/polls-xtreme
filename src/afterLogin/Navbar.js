@@ -24,7 +24,7 @@ const Navbar = () => {
         <span>Polls</span>
         <span>X</span>
         <span>treme</span>
-        <span style={{ fontSize: "10px", marginLeft: "8px" }}>v_3.24</span>
+        <span style={{ fontSize: "10px", marginLeft: "8px" }}>v_4.24</span>
       </div>
       <div className={openNav ? `${navStyle.activeNav}` : `${navStyle.navs}`}>
         <NavLink

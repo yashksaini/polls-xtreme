@@ -11,11 +11,13 @@ import AdminNavbar from "./Navbar";
 import Modal from "./Modal";
 import AddModal from "./AddModal";
 import style from "./admin.module.css";
+import MatchPolls from "./MatchPolls";
 const CreatePoll = () => {
   const [polls, setPolls] = useState([]);
   const [update, setUpdate] = useState({});
   const [modal, setModal] = useState(false);
   const [addModal, setAddModal] = useState(false);
+  const [matchPoll, setMatchPoll] = useState(false);
   let firestore = getFirestore();
   async function getPollsData() {
     let querySnapshot = await getDocs(
@@ -46,6 +48,14 @@ const CreatePoll = () => {
           }}
         >
           <span className="material-symbols-outlined">playlist_add</span>
+        </button>
+        <button
+          className={`${style.addPollBtn} ${style.matchPoll}`}
+          onClick={() => {
+            setMatchPoll(true);
+          }}
+        >
+          <span className="material-symbols-outlined">data_check</span>
         </button>
         <div className={style.adminPolls}>
           {polls.map((poll, index) => {
@@ -78,6 +88,7 @@ const CreatePoll = () => {
           })}
         </div>
         <AddModal addModal={addModal} setAddModal={setAddModal} />
+        {matchPoll && <MatchPolls setMatchPoll={setMatchPoll} />}
         <Modal
           modal={modal}
           setModal={setModal}
